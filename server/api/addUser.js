@@ -1,8 +1,8 @@
 export default defineEventHandler(async (e) => {
-  const requestBody = await readBody(e);
-  const db = useDatabase("myDB");
+    const requestBody = await readBody(e);
+    const db = useDatabase("myDB");
 
-  await db.sql`CREATE TABLE IF NOT EXISTS users
+    await db.sql`CREATE TABLE IF NOT EXISTS users
     (
       ID INTEGER PRIMARY KEY AUTOINCREMENT,
       Name TEXT,
@@ -10,8 +10,6 @@ export default defineEventHandler(async (e) => {
     )
   `;
 
-  const result = await db.sql`INSERT INTO users (Name, Email) VALUES \
+    await db.sql`INSERT INTO users (Name, Email) VALUES \
       (${requestBody.name}, ${requestBody.email})`;
-
-  console.log(result);
 });
